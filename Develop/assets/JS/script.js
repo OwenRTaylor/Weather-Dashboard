@@ -1,4 +1,5 @@
 
+//Declaring variables
 var key = "263734e13473fcd5d373c94ac2874e3e";
 var lat = "33.44";
 var lon = "	-90.435600";
@@ -7,6 +8,9 @@ var date;
 var apiUrl;
 var UTC;
 var i=0;
+var ABC;
+var dataArr = [];
+
 var inputEl = document.getElementById('SearchInput');
 var buttonEl = document.getElementById('SearchBtn');
 var tempEl = document.getElementById('temp');
@@ -14,13 +18,12 @@ var windEl = document.getElementById('wind');
 var humidityEl = document.getElementById('humidity');
 var UVindexEl = document.getElementById('UVindex');
 var dateEl = document.getElementById('dt');
-buttonEl.addEventListener('click',getWeather);
 form = document.querySelector('form')
 var x = document.querySelector("img");
 
-var dataArr = [];
+buttonEl.addEventListener('click',getWeather);
 
-console.log(dataArr)
+// Object with cities
 var cities = [
     {
         "name":"Chicago",
@@ -89,14 +92,12 @@ var cities = [
         
     }
 ];
-var ABC;
 
 
 
-
+//Setting five previous days of info
 function FiveDayForecast(){
     date-=86400
-            console.log(date);
     apiUrl ='http://api.openweathermap.org/data/2.5/onecall/timemachine?lat=' + lat +'&lon=' + lon + '&dt='+ date + '&exclude=hourly,daily&units=imperial&appid=263734e13473fcd5d373c94ac2874e3e'
     i=1
         ABC = fetch(apiUrl).then(response => response.json());
@@ -193,8 +194,7 @@ function FiveDayForecast(){
     
     
 }
-function setFive(){
-};
+// Setting Main Card
 function SetInfo(data){
     date = data.current.dt;
     
@@ -224,23 +224,20 @@ function SetInfo(data){
     }
     FiveDayForecast();
 }
-
+// inital button ClickListener
 function getWeather() {
     event.preventDefault();
     input = inputEl.value;
 
     var found = cities.find(e => e.name === input);
     if (found!=undefined) {
-    console.log(found)
     var tracker = localStorage.getItem('tracker')
     if (tracker!=null) {
         tracker++
-        console.log(tracker);
         localStorage.setItem('tracker',tracker);
     } else{
         localStorage.setItem('tracker',0);
         tracker = localStorage.getItem('tracker')
-        console.log(tracker);
     }
     
         lat = found.lat
@@ -250,7 +247,6 @@ function getWeather() {
         if (dataArr!=null) {
             dataArr = dataArr.split(',');
             dataArr[tracker] = found.name
-            console.log(dataArr)
             localStorage.setItem('previousSearch', dataArr)
         } else{
             dataArr = [];
@@ -269,12 +265,11 @@ function getWeather() {
     console.log('Please enter a city name');
 }
 }
-
-    function getApi(apiUrl,num){
+    //First getapi
+   function getApi(apiUrl,num){
         fetch(apiUrl).then(function(response) {
             return response.json()
         }).then(function(data) {
-            console.log(data);
             if (num === 1){
             SetInfo(data);
             }
@@ -285,11 +280,8 @@ function getWeather() {
         };
       
 
-function test(){
-    for(var b = 1;b<=5;b++){
-    }
-}
-test();
+
+//Loading prevoius information
 function SetPrevInfo(){
     event.preventDefault();
     
@@ -318,10 +310,10 @@ function SetPrevInfo(){
     UVindexEl.textContent = data.current.uvi;
     })
 }
+//Loading data
 function loadData(){
     var prevSrch = localStorage.getItem('previousSearch');
     var length = localStorage.getItem('tracker');
-    console.log(prevSrch)
     prevSrch = prevSrch.split(',');
     for(i=0;i<=length;i++){
     var buttonEl1 = document.createElement('button');
