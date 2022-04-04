@@ -1,4 +1,19 @@
-.Title{
+button {
+    width: 100%;
+    margin-bottom: 10px;
+}
+input {
+    width: 100%;
+}
+ul {
+  list-style: none;  
+}
+img {
+    width: 30px;
+    height: 30px;
+    display: none;
+}
+.Title {
     font-size: 50px;
     text-align: center;
     border-bottom: 2px solid black;

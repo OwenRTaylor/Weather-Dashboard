@@ -6,15 +6,77 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather Dashboard</title>
     <link rel="stylesheet" href="./assets/css/style.css">
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
 </head>
 <body>
     <header>
         <h1 class="Title">Weather Dashboard</h1>
     </header>
-    <form>
+    <section class="row">
+    <form class="col-4">
         <input type="text" id="SearchInput">
-        <button id="SearchBtn">GET</button>
+        <button id="SearchBtn" class="Btn">GET</button>
     </form>
+    <div class="col-8">
+        <h2 id="dt"></h2>
+        <img src="">
+        <ul id="I">
+            <li id="temp"></li>
+            <li id="wind"></li>
+            <li id="humidity"></li>
+            <li id="UVindex"></li>
+        </ul>
+        <div class="card">
+            <h2 id="dt1"></h2>
+            <ul id="I">
+                <li id="temp1"></li>
+                <li id="wind1"></li>
+                <li id="humidity1"></li>
+                <li id="UVindex1"></li>
+            </ul>
+        </div>
+        <div class="card">
+            <h2 id="dt2"></h2>
+            <ul id="I">
+                <li id="temp2"></li>
+                <li id="wind2"></li>
+                <li id="humidity2"></li>
+                <li id="UVindex2"></li>
+            </ul>
+        </div>
+        <div class="card">
+            <h2 id="dt3"></h2>
+            <ul id="I">
+                <li id="temp3"></li>
+                <li id="wind3"></li>
+                <li id="humidity3"></li>
+                <li id="UVindex3"></li>
+            </ul>
+        </div>
+        <div class="card">
+            <h2 id="dt4"></h2>
+            <ul id="I">
+                <li id="temp4"></li>
+                <li id="wind4"></li>
+                <li id="humidity4"></li>
+                <li id="UVindex4"></li>
+            </ul>
+        </div>
+        <div class="card">
+            <h2 id="dt5"></h2>
+            
+            <ul id="I">
+                <li id="temp5"></li>
+                <li id="wind5"></li>
+                <li id="humidity5"></li>
+                <li id="UVindex5"></li>
+            </ul>
+        </div>
+    
+</section>
     <script src="./assets/JS/script.js"></script>
 </body>
 </html>
