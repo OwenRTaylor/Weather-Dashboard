@@ -96,104 +96,45 @@ var cities = [
 
 
 //Setting five previous days of info
-function FiveDayForecast(){
-    date-=86400
+function FiveDayForecast(data){
+    
+    if (i<5){
     apiUrl ='http://api.openweathermap.org/data/2.5/onecall/timemachine?lat=' + lat +'&lon=' + lon + '&dt='+ date + '&exclude=hourly,daily&units=imperial&appid=263734e13473fcd5d373c94ac2874e3e'
-    i=1
-        ABC = fetch(apiUrl).then(response => response.json());
-    ABC.then(function(data) {
+    
+        
+
+        console.log(apiUrl);
+    
         dateEl = document.getElementById('dt'+i);
         tempEl = document.getElementById('temp'+i);
         windEl = document.getElementById('wind'+i);
         humidityEl = document.getElementById('humidity'+i);
-        localDate = data.current.dt;
-        localDate = new Date;
+        localDate = new Date (date);
         dateEl.textContent = localDate;
+        console.log(date);
+
         tempEl.textContent = 'Temp: ' + data.current.temp + '°F';
         windEl.textContent = 'Wind Speed: '+data.current.wind_speed + ' MPH';
         humidityEl.textContent = 'Humidity: ' +data.current.humidity + '%';
         UVindexEl.textContent = 'UVIndex: ' + data.current.uvi;
-        date-=86400
+        date = date - 86400
         apiUrl ='http://api.openweathermap.org/data/2.5/onecall/timemachine?lat=' + lat +'&lon=' + lon + '&dt='+ date + '&exclude=hourly,daily&units=imperial&appid=263734e13473fcd5d373c94ac2874e3e'
+        console.log(apiUrl);
         i++
-    });
-        ABC.then(function(data) {
-            dateEl = document.getElementById('dt'+i);
-            tempEl = document.getElementById('temp'+i);
-            windEl = document.getElementById('wind'+i);
-            humidityEl = document.getElementById('humidity'+i);
-            localDate = data.current.dt;
-            localDate = new Date;
-            dateEl.textContent = localDate;
-            tempEl.textContent = 'Temp: ' + data.current.temp + '°F';
-            windEl.textContent = 'Wind Speed: '+data.current.wind_speed + ' MPH';
-            humidityEl.textContent = 'Humidity: ' +data.current.humidity + '%';
-            UVindexEl.textContent = 'UVIndex: ' + data.current.uvi;
-            date-=86400
-            apiUrl ='http://api.openweathermap.org/data/2.5/onecall/timemachine?lat=' + lat +'&lon=' + lon + '&dt='+ date + '&exclude=hourly,daily&units=imperial&appid=263734e13473fcd5d373c94ac2874e3e'
-            ABC = fetch(apiUrl).then(response => response.json());
-            i++
-        });
-        ABC.then(function(data) {
-            dateEl = document.getElementById('dt'+i);
-            tempEl = document.getElementById('temp'+i);
-            windEl = document.getElementById('wind'+i);
-            humidityEl = document.getElementById('humidity'+i);
-            localDate = data.current.dt;
-            localDate = new Date;
-            dateEl.textContent = localDate;
-            tempEl.textContent = 'Temp: ' + data.current.temp + '°F';
-            windEl.textContent = 'Wind Speed: '+data.current.wind_speed + ' MPH';
-            humidityEl.textContent = 'Humidity: ' +data.current.humidity + '%';
-            UVindexEl.textContent = 'UVIndex: ' + data.current.uvi;
-            date-=86400
-            apiUrl ='http://api.openweathermap.org/data/2.5/onecall/timemachine?lat=' + lat +'&lon=' + lon + '&dt='+ date + '&exclude=hourly,daily&units=imperial&appid=263734e13473fcd5d373c94ac2874e3e'
-            ABC = fetch(apiUrl).then(response => response.json());
-            i++
-        });
-        ABC.then(function(data) {
-            dateEl = document.getElementById('dt'+i);
-            tempEl = document.getElementById('temp'+i);
-            windEl = document.getElementById('wind'+i);
-            humidityEl = document.getElementById('humidity'+i);
-            
-            localDate = data.current.dt;;
-            localDate = new Date;
-            dateEl.textContent = localDate;
-            tempEl.textContent = 'Temp: ' + data.current.temp + '°F';
-            windEl.textContent = 'Wind Speed: '+data.current.wind_speed + ' MPH';
-            humidityEl.textContent = 'Humidity: ' +data.current.humidity + '%';
-            UVindexEl.textContent = 'UVIndex: ' + data.current.uvi;
-            date-=86400
-            apiUrl ='http://api.openweathermap.org/data/2.5/onecall/timemachine?lat=' + lat +'&lon=' + lon + '&dt='+ date + '&exclude=hourly,daily&units=imperial&appid=263734e13473fcd5d373c94ac2874e3e'
-            ABC = fetch(apiUrl).then(response => response.json());
-            i++
-        });
-        ABC.then(function(data) {
-            dateEl = document.getElementById('dt'+i);
-            tempEl = document.getElementById('temp'+i);
-            windEl = document.getElementById('wind'+i);
-            humidityEl = document.getElementById('humidity'+i);
-            
-            localDate = data.current.dt;
-            localDate = new Date;
-            dateEl.textContent = localDate;
-            tempEl.textContent = 'Temp: ' + data.current.temp + '°F';
-            windEl.textContent = 'Wind Speed: '+data.current.wind_speed + ' MPH';
-            humidityEl.textContent = 'Humidity: ' +data.current.humidity + '%';
-            UVindexEl.textContent = 'UVIndex: ' + data.current.uvi;
-            date-=86400
-            apiUrl ='http://api.openweathermap.org/data/2.5/onecall/timemachine?lat=' + lat +'&lon=' + lon + '&dt='+ date + '&exclude=hourly,daily&units=imperial&appid=263734e13473fcd5d373c94ac2874e3e'
-            ABC = fetch(apiUrl).then(response => response.json());
-            i++
-        });
-    
-    
-    
-    
-    
-    
+        console.log(i);
+        getApi1(apiUrl);
+    }
 }
+        
+    
+  function getApi1(apiUrl) {
+    fetch(apiUrl).then(response => response.json()).then(data =>FiveDayForecast(data))
+  }  
+    
+    
+    
+    
+
 // Setting Main Card
 function SetInfo(data){
     date = data.current.dt;
@@ -222,7 +163,8 @@ function SetInfo(data){
         UVindexEl.setAttribute('style','background-color:red');
 
     }
-    FiveDayForecast();
+    i=1;
+    getApi1(apiUrl);
 }
 // inital button ClickListener
 function getWeather() {
@@ -243,16 +185,17 @@ function getWeather() {
         lat = found.lat
         lon = found.lon
         dataArr = localStorage.getItem('previousSearch');
-        
+        dataArr = JSON.parse(dataArr);
         if (dataArr!=null) {
-            dataArr = dataArr.split(',');
             dataArr[tracker] = found.name
+            dataArr = JSON.stringify(dataArr);
             localStorage.setItem('previousSearch', dataArr)
         } else{
             dataArr = [];
-            dataArr.length = 10;
             tracker=0;
             dataArr[0] = found.name;
+            dataArr = JSON.stringify(dataArr);
+
             localStorage.setItem('previousSearch', dataArr);
         }
         
@@ -314,7 +257,7 @@ function SetPrevInfo(){
 function loadData(){
     var prevSrch = localStorage.getItem('previousSearch');
     var length = localStorage.getItem('tracker');
-    prevSrch = prevSrch.split(',');
+    prevSrch = JSON.parse(prevSrch);
     for(i=0;i<=length;i++){
     var buttonEl1 = document.createElement('button');
     buttonEl1.textContent = prevSrch[i];
